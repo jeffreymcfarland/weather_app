@@ -1,5 +1,20 @@
 .heading{
-    background-color: #77779b;
+    background-color: #336070;
     color: #f7f7f7;
+}
+
+.font{
     font-family: 'Montserrat', sans-serif;
+}
+
+.city-search{
+    color: #336070;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.cities{
+    background-color: #f5f3f3;
+    font-size: 20px;
+    outline-color: #a7644b !important;
 }
