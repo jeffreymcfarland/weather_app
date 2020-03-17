@@ -3,18 +3,52 @@
     color: #f7f7f7;
 }
 
+.left-background{
+    background-color: #f8f9f9;
+}
+
 .font{
     font-family: 'Montserrat', sans-serif;
 }
 
 .city-search{
     color: #336070;
-    font-size: 20px;
     font-weight: bold;
 }
 
+#search-btn{
+    background-color: #336070;
+    color: #f7f7f7;
+}
+
 .cities{
+    padding-right: 60%;
     background-color: #f5f3f3;
     font-size: 20px;
-    outline-color: #a7644b !important;
 }
+
+.futureDays{
+    background-color: #0f79a8;
+    color: #f7f7f7;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.UV-bad{
+    background-color: #ff4e4e;
+    padding: 6px;
+    color: #f7f7f7;
+}
+
+.UV-good{
+    background-color: #b1ffb1;
+    padding: 6px;
+    color: #f7f7f7;
+}
+
+.UV-norm{
+    background-color: #cecece;
+    padding: 6px;
+    color: #f7f7f7;
+}
+
