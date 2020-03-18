@@ -125,7 +125,7 @@ $.ajax({
 
     // Grab weather icon
     var icon = response.weather[0].icon;
-    var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+    var iconurl = "https://openweathermap.org/img/w/" + icon + ".png";
 
     // Create img tag
     $(".img").attr("src", iconurl);
