@@ -22,9 +22,13 @@
 }
 
 .cities{
-    padding-right: 60%;
+    size: 20px;
     background-color: #f5f3f3;
     font-size: 20px;
+}
+
+.border{
+    background-color: #f5f3f3;
 }
 
 .futureDays{
@@ -53,5 +57,10 @@
     padding: 6px;
     color: #f7f7f7;
     border-radius: 8px;
+}
+
+.futureDate{
+    font-size: large;
+    font-weight: bold;
 }
 

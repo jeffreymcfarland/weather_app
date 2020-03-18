@@ -1,24 +1,30 @@
 
-// var apiKey = "ba5f08a1af110cb53f0aab50ebe1553b";
+var city = "";
 
-// var queryURL     = "http://api.openweathermap.org/data/2.5/forecast?q=tallahassee,florida&units=imperial&appid=ba5f08a1af110cb53f0aab50ebe1553b";
+$(document).on("click", ".cities", recallQuery);
 
-var city  = "";
-var state = "";
+function recallQuery() {
 
-var cityInput  = $("#searchCity");
-var stateInput = $("#searchState");
+    city = $(this).text();
 
-var dateArray = [];
-var iconArray = [];
-var tempArray = [];
-var humArray  = [];
+    localStorage.setItem("lastselected", JSON.stringify(city));
+    
+    runQuery2();
 
-var cityName = "";
+};
 
-var cityArray = [];
+function recallQuery2() {
 
-function runQuery(){
+    var lastSelected = JSON.parse(localStorage.getItem("lastselected"));
+    if (lastSelected !== null) {
+        city = lastSelected;
+        runQuery2();
+    }
+};
+
+recallQuery2();
+
+function runQuery2(){
 
     // URL for 5 day forcast
     var futureDayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +"," + state + "&units=imperial&appid=ba5f08a1af110cb53f0aab50ebe1553b";
@@ -44,7 +50,6 @@ $.ajax({
     
     // Grab weather icon for each day
     var iconcode1 = response.list[5].weather[0].icon;
-    console.log(response);
     var iconcode2 = response.list[13].weather[0].icon;
     var iconcode3 = response.list[21].weather[0].icon;
     var iconcode4 = response.list[29].weather[0].icon;
@@ -109,8 +114,7 @@ $.ajax({
 
     // Grab city name
     var cityName = response.name;
-    cityArray.push(cityName);
-    console.log(cityName);
+    // cityArray.push(cityName);
 
     // Grab date
     var date = moment().format("l");
@@ -175,64 +179,6 @@ $.ajax({
 
     });
 
-    storeItem();
-
-    createBtn();
-
   });
 
 };
-
-// Store city names to local storage array
-function storeItem() {
-    
-        localStorage.setItem("cities", JSON.stringify(cityArray));
-    
-};
-
-function getItem() {
-    var getItem = JSON.parse(localStorage.getItem("cities"));
-    if (getItem !== null) {
-    cityArray = getItem;
-    };
-    console.log(cityArray);
-
-    createBtn();
-};
-
-getItem();
-
-function createBtn() {
-
-    var leftSide = $(".leftSide");
-    leftSide.empty();
-
-    // Create button for past searched cities
-    for ( var i = 0; i < cityArray.length; i++) {
-        console.log(cityArray);
-
-                
-        var cityBtn = $("<button>").addClass("cities btn border ml-3 mt-1 pl-3 pt-2 pb-2 font d-flex justify-content-left");
-        cityBtn.text(cityArray[i]);
-    
-        leftSide.append(cityBtn);
-    
-    };
-};
-
-
-$("#search-btn").on("click", function(e){
-    e.preventDefault();
-
-    city  = cityInput.val().trim().toLowerCase();
-    state = stateInput.val().trim().toLowerCase();
-    runQuery();
-
-    // Clear input boxes after each search
-    cityInput.val("");
-    stateInput.val("");
-    
-});
-
-
-

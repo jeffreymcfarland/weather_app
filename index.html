@@ -19,19 +19,21 @@
     </header>
 
     <main>
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3 p-3 left-background">
                     <h4 class="ml-3 mt-1 font city-search">Search for a City:</h4>
                     <form class="ml-3">
-                        <input placeholder="city" type="text" id="searchCity">
-                        <input placeholder="state" type="text" id="searchState"><br>
+                        <input class="w-75" placeholder="city" type="text" id="searchCity">
+                        <div class="input-group-sm w-75 mb-1">
+                            <select class="custom-select" id="searchState">
+                              <option selected>Choose State...</option>
+                            </select>
+                          </div>
                         <button class="rounded" id="search-btn">Search</button>
                     </form>
                     <br>
                     <div class="leftSide">
-                    <!-- <button class="cities btn border ml-3 mt-1 pl-3 pt-2 pb-2 font">
-                       <div class="d-flex justify-content-left"></div>
-                    </button> -->
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -47,55 +49,14 @@
                             <p class="ml-5 mt-2 mb-4 cityUV font"></p>
                         </div>
                     </div>
-                    <div class="row ml-4 mt-3">
+                    <div class="row ml-4 mt-1">
                         <h3 class="futureForecast"></h3>
                     </div>
-                    <div class="row ml-4 mr-4 mb-3 d-flex justify-content-between futureDiv">
-                        <!-- <div class="col-md-2 futureDays">
-                            <h4 class="futureDate1"></h4>
-                            <div class="futureDayIcon1"></div>
-                            <p class="futureTemp1"></p>
-                            <p class="futureHum5"></p>
-
-                        </div>
-                        <div class="col-md-2 futureDays">
-                            <h4 class="futureDate2"></h4>
-                            <div class="futureDayIcon2"></div>
-                            <p class="futureTemp2"></p>
-                            <p class="futureHum2"></p>
-                            
-                        </div>
-                        <div class="col-md-2 futureDays">
-                            <h4 class="futureDate3"></h4>
-                            <div class="futureDayIcon3"></div>
-                            <p class="futureTemp3"></p>
-                            <p class="futureHum3"></p>
-                            
-                        </div>
-                        <div class="col-md-2 futureDays">
-                            <h4 class="futureDate4"></h4>
-                            <div class="futureDayIcon4"></div>
-                            <p class="futureTemp4"></p>
-                            <p class="futureHum4"></p>
-                            
-                        </div>
-                        <div class="col-md-2 futureDays">
-                            <h4 class="futureDate5"></h4>
-                            <div class="futureDayIcon5"></div>
-                            <p class="futureTemp5"></p>
-                            <p class="futureHum5"></p>
-                            
-                        </div> -->
-
+                    <div class="row ml-4 mr-4 mb-3 d-flex flex-wrap justify-content-around futureDiv"></div>
                         
-                    </div>
                 </div>
             </div>
-
-
-
-
-
+        </div>
 
     </main>
 
@@ -111,5 +72,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 
 <script src="assets/script.js"></script>
+<script src="assets/script2.js"></script>
+<script src="assets/script3.js"></script>
 </body>
 </html>
