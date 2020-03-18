@@ -16,6 +16,8 @@ var humArray  = [];
 
 var cityName = "";
 
+var cityArray = [];
+
 function runQuery(){
 
     // URL for 5 day forcast
@@ -40,8 +42,6 @@ $.ajax({
     dateArray = [];
     dateArray.push(date1, date2, date3, date4, date5);
     
-    console.log(dateArray);
-
     // Grab weather icon for each day
     var iconcode1 = response.list[4].weather[0].icon;
     var iconcode2 = response.list[12].weather[0].icon;
@@ -58,8 +58,6 @@ $.ajax({
     iconArray = [];
     iconArray.push(iconurl1, iconurl2, iconurl3, iconurl4, iconurl5);
 
-    console.log(iconArray);
-
     // Grab temperature for each day
     var temp1 = (response.list[4].main.temp).toFixed(1) + " °F";
     var temp2 = (response.list[12].main.temp).toFixed(1) + " °F";
@@ -70,8 +68,6 @@ $.ajax({
     tempArray = [];
     tempArray.push(temp1, temp2, temp3, temp4, temp5);
 
-    console.log(tempArray);
-
     // Grab humidity for each day
     var hum1 = Math.round(response.list[4].main.humidity) + "%";
     var hum2 = Math.round(response.list[12].main.humidity) + "%";
@@ -81,8 +77,6 @@ $.ajax({
 
     humArray = [];
     humArray.push(hum1, hum2, hum3, hum4, hum5);
-
-    console.log(humArray);
 
     $(".futureDiv").empty();
 
@@ -111,15 +105,15 @@ $.ajax({
   }).then(function(response) {
 
     // Grab city name
-    var city = response.name;
-    cityName = city;
+    var cityName = response.name;
+    cityArray.push(cityName);
 
     // Grab date
     var date = moment().format("l");
 
     // Put City name on page
     $(".current-day").addClass("border");
-    $(".cityName").text(city + " " + date + " ");
+    $(".cityName").text(cityName + " " + date);
 
     // Grab weather icon
     var icon = response.weather[0].icon;
@@ -133,19 +127,19 @@ $.ajax({
     var temp = (response.main.temp).toFixed(1) + " °F";
 
     // Put Temp on page
-    $(".cityTemp").text("Temperature: " + temp).addClass("ml-5 mt-4");
+    $(".cityTemp").text("Temperature: " + temp);
 
     // Grab humidity
     var hum = Math.round(response.main.humidity) + "%";
 
     // Put Humidity on page
-    $(".cityHum").text("Humidity: " + hum).addClass("ml-5 mt-4");
+    $(".cityHum").text("Humidity: " + hum);
 
     // Grab wind speed
     var wind = (response.wind.speed).toFixed(1) + "MPH";
 
     // Put Wind Speed on page
-    $(".cityWind").text("Wind Speed: " + wind).addClass("ml-5 mt-4");
+    $(".cityWind").text("Wind Speed: " + wind);
 
     // Grab latitude and longitude
     var lon = response.coord.lon;
@@ -171,34 +165,44 @@ $.ajax({
         } else {
             var span = $("<span>").text(UV).addClass("UV-norm");
         };
-        
 
         // Put UV on page
-        $(".cityUV").text("UV Index: ").addClass("ml-5 mt-4").append(span);
-
-        // Create button for past searched cities
-        var leftSide = $(".leftSide");
-        var cityBtn = $("<button>").addClass("cities btn border ml-3 mt-1 pl-3 pt-2 pb-2 font");
-        var cityText = $("<div>").addClass("d-flex justify-content-left");
-        cityText.text(cityName);
-        
-        // Append div to button with text of city name
-        cityBtn.append(cityText);
-        leftSide.append(cityBtn);
+        $(".cityUV").text("UV Index: ").append(span);
 
     });
 
+    var leftSide = $(".leftSide");
+    leftSide.empty();
+
+    // Create button for past searched cities
+    for ( var i = 0; i < cityArray.length; i++) {
+                
+        var cityBtn = $("<button>").addClass("cities btn border ml-3 mt-1 pl-3 pt-2 pb-2 font d-flex justify-content-left");
+        cityBtn.text(cityArray[i]);
+    
+        leftSide.append(cityBtn);
+    
+        };
+
   });
+
 
 };
 
+
 $("#search-btn").on("click", function(e){
     e.preventDefault();
+
     city  = cityInput.val().trim().toLowerCase();
     state = stateInput.val().trim().toLowerCase();
     runQuery();
     cityInput.val("");
     stateInput.val("");
+    
+});
 
-  });
 
+$(document).on("click", ".cities", function() {
+    city = $(this).text();
+    runQuery();
+});
