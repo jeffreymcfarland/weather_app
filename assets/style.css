@@ -38,17 +38,20 @@
     background-color: #ff4e4e;
     padding: 6px;
     color: #f7f7f7;
+    border-radius: 8px;
 }
 
 .UV-good{
     background-color: #b1ffb1;
     padding: 6px;
     color: #f7f7f7;
+    border-radius: 8px;
 }
 
 .UV-norm{
-    background-color: #cecece;
+    background-color: #f9e168;
     padding: 6px;
     color: #f7f7f7;
+    border-radius: 8px;
 }
 

@@ -14,6 +14,8 @@ var iconArray = [];
 var tempArray = [];
 var humArray  = [];
 
+var cityName = "";
+
 function runQuery(){
 
     // URL for 5 day forcast
@@ -35,6 +37,7 @@ $.ajax({
     var date4 = moment().add(4, 'days').format("l");
     var date5 = moment().add(5, 'days').format("l");
 
+    dateArray = [];
     dateArray.push(date1, date2, date3, date4, date5);
     
     console.log(dateArray);
@@ -52,6 +55,7 @@ $.ajax({
     var iconurl4 = "http://openweathermap.org/img/w/" + iconcode4 + ".png";
     var iconurl5 = "http://openweathermap.org/img/w/" + iconcode5 + ".png";
 
+    iconArray = [];
     iconArray.push(iconurl1, iconurl2, iconurl3, iconurl4, iconurl5);
 
     console.log(iconArray);
@@ -63,6 +67,7 @@ $.ajax({
     var temp4 = (response.list[28].main.temp).toFixed(1) + " °F";
     var temp5 = (response.list[36].main.temp).toFixed(1) + " °F";
 
+    tempArray = [];
     tempArray.push(temp1, temp2, temp3, temp4, temp5);
 
     console.log(tempArray);
@@ -74,9 +79,29 @@ $.ajax({
     var hum4 = Math.round(response.list[28].main.humidity) + "%";
     var hum5 = Math.round(response.list[36].main.humidity) + "%";
 
+    humArray = [];
     humArray.push(hum1, hum2, hum3, hum4, hum5);
 
     console.log(humArray);
+
+    $(".futureDiv").empty();
+
+    // Put items on the page using for loop
+    for (var i =0; i < dateArray.length; i++) {
+        var futureDays = $("<div>").addClass("col-md-2 futureDays");
+        var futureDate = $("<h4>").addClass("futureDate" + i);
+        var futureIcon = $("<img>").attr("src", iconArray[i]);
+        var futureTemp = $("<p>").addClass("futureTemp" + i);
+        var futureHum = $("<p>").addClass("futureHum" + i);
+        
+        futureDate.text(dateArray[i]);
+        futureTemp.text("Temp: " + tempArray[i]);
+        futureHum.text("Humidity: " + humArray[i]);
+        futureDays.append(futureDate, futureIcon, futureTemp, futureHum);
+        $(".futureDiv").append(futureDays);
+    };
+
+    $(".futureForecast").text("5 Day Forecast:");
     
   });
 
@@ -87,17 +112,22 @@ $.ajax({
 
     // Grab city name
     var city = response.name;
+    cityName = city;
 
     // Grab date
     var date = moment().format("l");
 
     // Put City name on page
     $(".current-day").addClass("border");
-    $(".cityName").text(city + " " + date).addClass("ml-5 mt-4");
+    $(".cityName").text(city + " " + date + " ");
 
     // Grab weather icon
     var icon = response.weather[0].icon;
     var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+
+    // Create img tag
+    $(".img").attr("src", iconurl);
+    
 
     // Grab temperature
     var temp = (response.main.temp).toFixed(1) + " °F";
@@ -125,21 +155,38 @@ $.ajax({
     var UVIndexURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=ba5f08a1af110cb53f0aab50ebe1553b";
 
 
-  $.ajax({
-    url: UVIndexURL,
-    method: "GET"
-  }).then(function(response) {
+    $.ajax({
+        url: UVIndexURL,
+        method: "GET"
+    }).then(function(response) {
 
-    // Grab UV index
-    var UV = response.value;
+        // Grab UV index
+        var UV = response.value;
 
-    // Add class to UV
-    var span = $("<span>").text(UV).addClass("UV-bad");
+        // Add class to UV
+        if (UV <= 2) {
+            var span = $("<span>").text(UV).addClass("UV-good");
+        } if (UV >= 8) {
+            var span = $("<span>").text(UV).addClass("UV-bad");
+        } else {
+            var span = $("<span>").text(UV).addClass("UV-norm");
+        };
+        
 
-    // Put UV on page
-    $(".cityUV").text("UV Index: ").addClass("ml-5 mt-4").append(span);
+        // Put UV on page
+        $(".cityUV").text("UV Index: ").addClass("ml-5 mt-4").append(span);
 
-  });
+        // Create button for past searched cities
+        var leftSide = $(".leftSide");
+        var cityBtn = $("<button>").addClass("cities btn border ml-3 mt-1 pl-3 pt-2 pb-2 font");
+        var cityText = $("<div>").addClass("d-flex justify-content-left");
+        cityText.text(cityName);
+        
+        // Append div to button with text of city name
+        cityBtn.append(cityText);
+        leftSide.append(cityBtn);
+
+    });
 
   });
 
@@ -152,4 +199,6 @@ $("#search-btn").on("click", function(e){
     runQuery();
     cityInput.val("");
     stateInput.val("");
+
   });
+
