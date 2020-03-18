@@ -55,11 +55,11 @@ $.ajax({
     var iconcode4 = response.list[29].weather[0].icon;
     var iconcode5 = response.list[37].weather[0].icon;
 
-    var iconurl1 = "http://openweathermap.org/img/w/" + iconcode1 + ".png";
-    var iconurl2 = "http://openweathermap.org/img/w/" + iconcode2 + ".png";
-    var iconurl3 = "http://openweathermap.org/img/w/" + iconcode3 + ".png";
-    var iconurl4 = "http://openweathermap.org/img/w/" + iconcode4 + ".png";
-    var iconurl5 = "http://openweathermap.org/img/w/" + iconcode5 + ".png";
+    var iconurl1 = "https://openweathermap.org/img/w/" + iconcode1 + ".png";
+    var iconurl2 = "https://openweathermap.org/img/w/" + iconcode2 + ".png";
+    var iconurl3 = "https://openweathermap.org/img/w/" + iconcode3 + ".png";
+    var iconurl4 = "https://openweathermap.org/img/w/" + iconcode4 + ".png";
+    var iconurl5 = "https://openweathermap.org/img/w/" + iconcode5 + ".png";
 
     iconArray = [];
     iconArray.push(iconurl1, iconurl2, iconurl3, iconurl4, iconurl5);
@@ -154,7 +154,7 @@ $.ajax({
     var lat = response.coord.lat;
 
     // URL for current UV Index
-    var UVIndexURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=ba5f08a1af110cb53f0aab50ebe1553b";
+    var UVIndexURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=ba5f08a1af110cb53f0aab50ebe1553b";
 
 
     $.ajax({

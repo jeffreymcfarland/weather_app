@@ -50,11 +50,11 @@ $.ajax({
     var iconcode4 = response.list[29].weather[0].icon;
     var iconcode5 = response.list[37].weather[0].icon;
 
-    var iconurl1 = "http://openweathermap.org/img/w/" + iconcode1 + ".png";
-    var iconurl2 = "http://openweathermap.org/img/w/" + iconcode2 + ".png";
-    var iconurl3 = "http://openweathermap.org/img/w/" + iconcode3 + ".png";
-    var iconurl4 = "http://openweathermap.org/img/w/" + iconcode4 + ".png";
-    var iconurl5 = "http://openweathermap.org/img/w/" + iconcode5 + ".png";
+    var iconurl1 = "https://openweathermap.org/img/w/" + iconcode1 + ".png";
+    var iconurl2 = "https://openweathermap.org/img/w/" + iconcode2 + ".png";
+    var iconurl3 = "https://openweathermap.org/img/w/" + iconcode3 + ".png";
+    var iconurl4 = "https://openweathermap.org/img/w/" + iconcode4 + ".png";
+    var iconurl5 = "https://openweathermap.org/img/w/" + iconcode5 + ".png";
 
     iconArray = [];
     iconArray.push(iconurl1, iconurl2, iconurl3, iconurl4, iconurl5);
@@ -121,7 +121,7 @@ $.ajax({
 
     // Grab weather icon
     var icon = response.weather[0].icon;
-    var iconurl = "http://openweathermap.org/img/w/" + icon + ".png";
+    var iconurl = "https://openweathermap.org/img/w/" + icon + ".png";
 
     // Create img tag
     $(".img").attr("src", iconurl);
