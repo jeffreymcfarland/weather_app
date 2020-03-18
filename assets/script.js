@@ -21,10 +21,10 @@ var cityArray = [];
 function runQuery(){
 
     // URL for 5 day forcast
-    var futureDayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city +"," + state + "&units=imperial&appid=ba5f08a1af110cb53f0aab50ebe1553b";
+    var futureDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +"," + state + "&units=imperial&appid=ba5f08a1af110cb53f0aab50ebe1553b";
 
     // URL for current forecast
-    var currentDayURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city +"," + state + "&units=imperial&appid=ba5f08a1af110cb53f0aab50ebe1553b"
+    var currentDayURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city +"," + state + "&units=imperial&appid=ba5f08a1af110cb53f0aab50ebe1553b"
 
 
 $.ajax({
